@@ -1,21 +1,29 @@
----
-layout: page
-title: Python Server for Web Time Series Service
-permalink: /about
----
+# Continuous Integration with Jenkins
 
-[![Software License](https://img.shields.io/badge/license-MIT-green)
-](https://github.com/brazil-data-cube/wtss/blob/master/LICENSE) [![Build Status](https://travis-ci.org/brazil-data-cube/wtss.py.svg?branch=master)
-](https://travis-ci.org/brazil-data-cube/wtss.py) [![Code Coverage Test](https://coveralls.io/repos/github/brazil-data-cube/wtss.py/badge.svg?branch=master)
-](https://coveralls.io/github/brazil-data-cube/wtss.py?branch=master) [![Documentation Status](https://readthedocs.org/projects/wtss/badge/?version=latest)
-](https://wtss.readthedocs.io/en/latest/?badge=latest) [![Software Life Cycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
-](https://www.tidyverse.org/lifecycle/#experimental)
+The CI workflow is available in [`CI - Workflow`](https://drive.google.com/file/d/1QgSeMcNRph6ORE6kDDf_qazYtntqYpKb/view)
 
-## Installation
+We have prepared [`Jenkinsfile`](./Jenkinsfile) containing entire workflow of Brazil Data Cube - Web Time Series Service (WTSS) to represent mainly the integration with GitHub.
 
-See [`INSTALL`](/install)
+## Jenkinsfile
 
-## License
-Copyright (C) 2019 INPE.
-Python Server for Web Time Series Service is free software; you can redistribute it and/or modify it
-under the terms of the MIT License; see LICENSE file for more details.
+The Jenkinsfile is composed by five six steps that must be strictly followed in order to keep the funcionalities working as expected.
+These steps are defined as:
+
+* **prepare environment** which it builds Dockerfile and install Python package dependencies defined in [`requirements.txt`](./requirements.txt). After that, the create image will be used to run the other steps.
+
+* **code-check** Perform static and semantic analysis code to guarantee code quality. The Jenkinsfile is configured to mark build as:
+    - `unstable` for any *warning* found with high severity.
+    - `failed` when a potential error found.
+    - `success` when no entry is found.
+
+* **generate docs** Generate project documentation using `readthedocs` framework. We will provide doc URI in order to Reviewer check before merge.
+
+* **unittest** Run project unittesting on folder `tests`.
+
+* **deploy** Deploy application to respective server context. For Pull Request Integration, the application is deployed to the development server to act like production environment. Once configured, the repository reviewer will check through link available in Pull Request Comment.
+
+When an error occurrs, there is a special handler which will cleanup the built docker images. We also defined integration with `Slack Channel` that will notify the team developers about repository interaction.
+
+### Production
+
+TODO

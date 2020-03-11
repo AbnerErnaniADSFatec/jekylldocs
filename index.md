@@ -14,10 +14,6 @@ layout: home
 ](https://wtss.readthedocs.io/en/latest/?badge=latest) [![Software Life Cycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 ](https://www.tidyverse.org/lifecycle/#experimental)
 
-## Installation
-
-See [`INSTALL`](/install)
-
 ## License
 Copyright (C) 2019 INPE.
 Python Server for Web Time Series Service is free software; you can redistribute it and/or modify it

@@ -1,8 +1,4 @@
----
-layout: page
-title: Continuous Integration with Jenkins
-permalink: /ci
----
+# Continuous Integration with Jenkins
 
 The CI workflow is available in [`CI - Workflow`](https://drive.google.com/file/d/1QgSeMcNRph6ORE6kDDf_qazYtntqYpKb/view)
 
